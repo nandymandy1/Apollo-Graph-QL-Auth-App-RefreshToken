@@ -1,10 +1,10 @@
-import Joi from "joi";
 import {
   issueToken,
   attemptLogin,
   issueNewToken,
   checkSignedIn,
 } from "../../functions/Auth";
+import Joi from "joi";
 import mongoose from "mongoose";
 import { User } from "../../models";
 import { UserInputError } from "apollo-server-express";
@@ -35,7 +35,10 @@ export default {
       await Joi.validate(args, loginValidate, { abortEarly: false });
       const user = await attemptLogin(args);
       let tokens = await issueToken(user);
-      return { user, ...tokens };
+      return {
+        user,
+        ...tokens,
+      };
     },
 
     refreshTokens: async (root, args, { req }, info) =>
@@ -47,7 +50,10 @@ export default {
       await Joi.validate(args, registerValidate, { abortEarly: false });
       const user = await User.create(args);
       let tokens = await issueToken(user);
-      return { user, ...tokens };
+      return {
+        user,
+        ...tokens,
+      };
     },
   },
 };

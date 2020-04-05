@@ -41,7 +41,7 @@ query RefreshTokens {
   }
 }
 
-# HEADERS: Authorization ""
+# HEADERS: authorization ""
 query Profile {
   profile {
     name
@@ -50,7 +50,7 @@ query Profile {
   }
 }
 
-# HEADERS: Authorization ""
+# HEADERS: authorization ""
 query AllUsers {
   users {
     name
@@ -59,7 +59,7 @@ query AllUsers {
   }
 }
 
-# HEADERS: Authorization ""
+# HEADERS: authorization ""
 query UserById {
   user(id: "xxxxxxxxxxxxxx") {
     name

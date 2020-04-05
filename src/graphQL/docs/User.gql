@@ -1,0 +1,69 @@
+mutation RegisterUser {
+  register(
+    username: "XXXXXXXXXXX"
+    name: "XXXXXXX XXXXXXX"
+    password: "Xxxxxxxx@123456"
+    email: "XXXXXXXXXXX@gmail.com"
+  ) {
+    user {
+      name
+      email
+      username
+    }
+    token
+    refreshToken
+  }
+}
+
+query LoginUser {
+  login(username: "XXXXXXXXXXX", password: "Xxxxxxxx@123456") {
+    user {
+      name
+      email
+      username
+    }
+    token
+    refreshToken
+  }
+}
+
+# HEADERS: refreshtoken ""
+query RefreshTokens {
+  refreshTokens {
+    user {
+      id
+      name
+      email
+      username
+    }
+    token
+    refreshToken
+  }
+}
+
+# HEADERS: Authorization ""
+query Profile {
+  profile {
+    name
+    email
+    username
+  }
+}
+
+# HEADERS: Authorization ""
+query AllUsers {
+  users {
+    name
+    email
+    username
+  }
+}
+
+# HEADERS: Authorization ""
+query UserById {
+  user(id: "xxxxxxxxxxxxxx") {
+    name
+    email
+    username
+  }
+}

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models";
-import { APP_SECRET } from "../config";
+import { APP_SECRET, APP_REFRESH_TOKEN } from "../config";
 import { AuthenticationError } from "apollo-server-express";
 
 export const checkSignedIn = async (req, requireAuth = true) => {
@@ -24,7 +24,7 @@ export const issueNewToken = async (req) => {
   try {
     const token = req.headers.refreshtoken;
     if (token) {
-      const decoded = jwt.verify(token, APP_SECRET);
+      const decoded = jwt.verify(token, APP_REFRESH_TOKEN);
       let user = await User.findById(decoded.id);
       if (!user) {
         throw new AuthenticationError("No user found.");
@@ -55,5 +55,7 @@ export const issueToken = async (user) => {
   return { token, refreshToken };
 };
 
-const createToken = async ({ id, username, name, email }, expiresIn = 200) =>
-  await jwt.sign({ id, username, name, email }, APP_SECRET, { expiresIn });
+const createToken = async ({ id, username, name, email }, expiresIn = 200) => {
+  let secret = expiresIn === 200 ? APP_SECRET : APP_REFRESH_TOKEN;
+  return await jwt.sign({ id, username, name, email }, secret, { expiresIn });
+};

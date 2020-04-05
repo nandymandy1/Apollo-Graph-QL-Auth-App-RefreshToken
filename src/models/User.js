@@ -46,4 +46,5 @@ UserSchema.methods.isMatch = async function (password) {
 };
 
 const User = model("users", UserSchema);
+
 export default User;

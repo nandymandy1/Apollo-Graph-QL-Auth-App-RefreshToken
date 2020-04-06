@@ -1,2 +1,6 @@
 import user from "./user";
-export default [user];
+// import file from "./files";
+export default [
+  user,
+  // file
+];

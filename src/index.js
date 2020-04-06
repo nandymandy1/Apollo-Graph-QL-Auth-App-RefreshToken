@@ -1,4 +1,5 @@
 // Package Imports
+import cors from "cors";
 import express from "express";
 import consola from "consola";
 import mongoose from "mongoose";
@@ -10,6 +11,7 @@ import { ApolloServer } from "apollo-server-express";
 import { DB, IN_PORD, APP_PORT } from "./config";
 
 const app = express();
+app.use(cors());
 app.disable("x-powered-by");
 
 const server = new ApolloServer({
@@ -24,8 +26,13 @@ const server = new ApolloServer({
         },
       },
   context: ({ req, res }) => ({ req, res }),
+  uploads: {
+    maxFileSize: 10000000, // 10 MB
+    maxFiles: 20,
+  },
 });
 
+// Setup Static directory
 const startApp = async () => {
   try {
     // Database Connection

@@ -39,6 +39,7 @@ const startApp = async () => {
     await mongoose.connect(DB, {
       useCreateIndex: true,
       useNewUrlParser: true,
+      useFindAndModify: false,
       useUnifiedTopology: true,
     });
     consola.success({

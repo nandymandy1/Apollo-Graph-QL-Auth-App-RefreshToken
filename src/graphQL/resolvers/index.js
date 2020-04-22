@@ -1,6 +1,3 @@
 import user from "./user";
-// import file from "./files";
-export default [
-  user,
-  // file
-];
+import post from "./post";
+export default [user, post];

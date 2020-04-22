@@ -5,8 +5,8 @@ export default gql`
     profile: User
     users: [User!]!
     user(id: ID): User
-    login(username: String!, password: String!): Auth!
     refreshTokens: Auth!
+    login(username: String!, password: String!): Auth!
   }
 
   extend type Mutation {

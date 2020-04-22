@@ -1,0 +1,78 @@
+query AllPosts {
+  posts {
+    id
+    title
+    body
+    author {
+      id
+      username
+    }
+  }
+}
+
+query PostById {
+  postById(id: "5e9fd372b7dff70bfa8bda64") {
+    id
+    title
+    body
+    createdAt
+    updatedAt
+    author {
+      username
+      name
+    }
+  }
+}
+
+mutation CreatePost {
+  addPost(
+    newPost: { title: "Post Three", body: "This is the body of the Post Three" }
+  ) {
+    message
+    post {
+      id
+      body
+      title
+      author {
+        id
+        username
+        name
+        email
+      }
+    }
+  }
+}
+
+mutation UpdatePost {
+  editPost(
+    id: "5e9fe1def4182c0f9bab4495"
+    updatedPost: {
+      title: "Post One Updated"
+      body: "This is the again updated body of the Post One"
+    }
+  ) {
+    post {
+      id
+      title
+      body
+      author {
+        id
+        name
+        username
+      }
+    }
+    message
+  }
+}
+
+mutation DeletePost {
+  deletePost(id: "5e9fe1def4182c0f9bab4495") {
+    post {
+      title
+      author {
+        username
+      }
+    }
+    message
+  }
+}
